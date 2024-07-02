@@ -5,6 +5,9 @@ const port = process.env.PORT || 3000;
 
 const apiKey = 'c2c445348d2346ae94d143419240107';
 
+app.get{"/", async (request, response) => {
+    request.redirect("/api/hello?visitor_name=Mark");
+}}
 app.get('/api/hello', async (req, res) => {
     const visitorName = req.query.visitor_name;
     const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
