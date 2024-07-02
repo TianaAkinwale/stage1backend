@@ -2,14 +2,18 @@ const express = require('express');
 const axios = require('axios');
 const app = express();
 const port = process.env.PORT || 3000;
+
+// Load environment variables from .env file
 require('dotenv').config();
 
 // Access the API key from environment variables
 const apiKey = process.env.WEATHER_API_KEY;
 
-app.get{"/", async (request, response) => {
-    request.redirect("/api/hello?visitor_name=Mark");
-}}
+app.get("/", (req, res) => {
+    const visitorName = req.query.visitor_name || 'Nameless';
+    res.redirect(`/api/hello?visitor_name=${visitorName}`);
+});
+
 app.get('/api/hello', async (req, res) => {
     const visitorName = req.query.visitor_name;
     const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
